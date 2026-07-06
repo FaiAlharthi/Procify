@@ -30,7 +30,7 @@ This project is being developed with the following technologies:
 - A Gemini API key (for the AI chat assistant)
 
 ### Frontend
-- Node.js 18+
+- Node.js
 - npm
 
 ---
