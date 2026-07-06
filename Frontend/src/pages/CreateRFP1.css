@@ -1,0 +1,204 @@
+.crfp-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+.crfp-kicker {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+.crfp-title { font-size: var(--fs-2xl); font-weight: var(--fw-bold); color: var(--text); }
+.crfp-subtitle { font-size: var(--fs-sm); color: var(--text-muted); margin-top: var(--space-2); }
+.crfp-autosave {
+  display: flex; align-items: center; gap: var(--space-3);
+  white-space: nowrap; padding-top: var(--space-2);
+}
+.crfp-autosave-text { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-sm); color: var(--text-muted); }
+.crfp-autosave-pct { font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text-muted); }
+
+/* ---------- two-pane layout (original simple grid) ---------- */
+.crfp-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+.crfp-form-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-8);
+}
+.crfp-field-label {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+
+/* ---------- title input + every textarea: ONE modern full-width look ---------- */
+.crfp-form-card .crfp-title-input,
+.crfp-form-card .textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--text);
+  background-color: #F9FAFB;          /* light off-white */
+  border: 1px solid #e5e7eb;          /* subtle 1px gray */
+  border-radius: 12px;
+  padding: 14px 16px;                 /* generous padding */
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+.crfp-form-card .textarea { display: block; resize: none; }  /* no resize handle */
+.crfp-form-card .crfp-title-input { margin-bottom: var(--space-6); }
+.crfp-form-card .crfp-title-input::placeholder,
+.crfp-form-card .textarea::placeholder { color: #9ca3af; }
+.crfp-form-card .crfp-title-input:focus,
+.crfp-form-card .textarea:focus {
+  background-color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(45, 27, 78, 0.12);
+}
+
+/* ---------- simple bottom action container ---------- */
+.crfp-actions {
+  display: flex;
+  flex-direction: column;       /* stack the two groups so 4 buttons never collide */
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);   /* clean separation from inputs */
+}
+.crfp-actions-left,
+.crfp-actions-right { display: flex; align-items: center; gap: var(--space-3); }
+
+/* consistent height + type for all 4 buttons; flex:1 = equal width, text on one line */
+.crfp-actions .btn {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;              /* px-4 — keeps text off the edges */
+  border-radius: 12px;          /* rounded-xl */
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;          /* never wrap/stack the label */
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+/* secondary = ghost/outline */
+.crfp-actions-left .btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.crfp-actions-left .btn:hover { background-color: #f7f6fb; border-color: #ddd9ec; color: var(--text); }
+/* primary = brand dark purple, white text */
+.crfp-actions-right .btn { border: none; color: #fff; }
+.crfp-actions-right .btn-primary { background-color: var(--primary); box-shadow: 0 8px 18px -8px rgba(45,27,78,0.5); }
+.crfp-actions-right .btn-primary:hover { background-color: var(--primary-hover); }
+.crfp-actions-right .btn-ai { background-color: var(--primary-hover); background-image: none; box-shadow: 0 8px 18px -8px rgba(45,27,78,0.45); }
+.crfp-actions-right .btn-ai:hover { background-color: #46307a; }
+
+/* ---------- right preview — sticky with internal scroll to show both A4 pages ---------- */
+.crfp-preview {
+  position: sticky;
+  top: 0;
+  max-height: calc(100vh - 76px - 24px);
+  overflow-y: auto;
+  border-radius: var(--radius-lg);
+}
+
+/* ---------- cancel confirmation modal ---------- */
+.crfp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 10, 30, 0.45);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.crfp-modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px -10px rgba(45, 27, 78, 0.25);
+  padding: var(--space-7) var(--space-7) var(--space-6);
+  width: 100%;
+  max-width: 420px;
+  animation: crfp-modal-in 0.18s ease;
+}
+@keyframes crfp-modal-in {
+  from { opacity: 0; transform: translateY(-10px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)     scale(1); }
+}
+.crfp-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--space-3);
+  color: #dc2626;
+}
+.crfp-modal-title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  margin: 0;
+}
+.crfp-modal-body {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 var(--space-6);
+}
+.crfp-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}
+.crfp-modal-btn {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+.crfp-modal-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.crfp-modal-btn-secondary:hover { background: #f7f6fb; border-color: #ddd9ec; color: var(--text); }
+.crfp-modal-btn-danger {
+  background: #dc2626;
+  border: none;
+  color: #fff;
+  box-shadow: 0 6px 16px -6px rgba(220, 38, 38, 0.45);
+}
+.crfp-modal-btn-danger:hover { background: #b91c1c; }
+
+@media (max-width: 1024px) {
+  .crfp-split { grid-template-columns: 1fr; }
+  .crfp-preview { position: static; }
+  .crfp-header { flex-direction: column; }
+  .crfp-actions { flex-direction: column; align-items: stretch; }
+  .crfp-actions-left, .crfp-actions-right { justify-content: stretch; }
+}
+

@@ -1,0 +1,22 @@
+.file-card {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+}
+.file-card-center { flex-direction: column; text-align: center; gap: var(--space-2); padding: var(--space-6); }
+.file-card-left { flex-direction: row; }
+.file-card.is-clickable { cursor: pointer; transition: border-color 0.15s ease, background-color 0.15s ease; }
+.file-card.is-clickable:hover { border-color: var(--accent); background-color: #faf9fd; }
+
+.file-card-icon { color: var(--primary); display: inline-flex; flex-shrink: 0; }
+.file-card-name {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--primary);
+  word-break: break-word;
+}
+.file-card-meta { font-size: var(--fs-xs); color: var(--text-muted); margin-top: 2px; }

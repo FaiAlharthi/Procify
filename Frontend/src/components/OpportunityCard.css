@@ -1,0 +1,86 @@
+.opp-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5) var(--space-6);
+}
+.opp-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: #f1f2f5;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.opp-body { flex: 1; min-width: 0; }
+.opp-title {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+.opp-meta { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.opp-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.opp-status {
+  flex-shrink: 0;
+  background-color: #ede9fe;
+  color: #6d28d9;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+}
+.opp-actions { flex-shrink: 0; display: flex; align-items: center; gap: var(--space-3); }
+
+@media (max-width: 860px) {
+  .opp-card { flex-wrap: wrap; }
+  .opp-actions { width: 100%; }
+}
+
+/* ---------- premium card action buttons ---------- */
+.opp-actions .btn {
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;            /* single-line text */
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+/* Secondary: "RFP Document" — elegant ghost/outline, brand-cohesive border */
+.opp-actions .btn-secondary {
+  background: #ffffff;
+  border: 1px solid #e6e2f1;
+  color: var(--primary);
+}
+.opp-actions .btn-secondary:hover {
+  background: #f7f6fb;
+  border-color: #d8d3e8;
+}
+/* Primary: "Submit Proposal" — clean solid brand fill */
+.opp-actions .btn-primary {
+  background-color: var(--primary);
+  background-image: none;
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 8px 18px -8px rgba(45, 27, 78, 0.5);
+}
+.opp-actions .btn-primary:hover { background-color: var(--primary-hover); }

@@ -1,0 +1,167 @@
+.dash-search { position: relative; margin-bottom: var(--space-6); }
+.dash-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-subtle);
+  display: inline-flex;
+}
+.dash-search-input {
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--fs-base);
+  color: var(--text);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px 14px 46px;
+  outline: none;
+}
+.dash-search-input::placeholder { color: var(--text-subtle); }
+.dash-search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+.dash-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+/* Dashboard action buttons — shared base */
+.dash-actions .btn {
+  border-radius: 12px;
+  padding: 11px 18px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+}
+.dash-actions .btn:active { transform: translateY(1px); }
+
+/* "Received Proposals" — clean white outline */
+.dash-actions .btn-secondary {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  box-shadow: var(--shadow-sm);
+}
+.dash-actions .btn-secondary:hover {
+  background-color: var(--bg);
+  border-color: #d4d0e8;
+  color: var(--text);
+}
+.dash-actions .btn-secondary svg { color: var(--text-muted); }
+
+/* "New RFP" — solid brand purple */
+.dash-actions .btn-primary {
+  background-color: var(--primary);
+  border: 1px solid transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 14px -6px rgba(45, 27, 78, 0.45);
+}
+.dash-actions .btn-primary:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 6px 18px -6px rgba(45, 27, 78, 0.55);
+}
+.dash-actions .btn-primary svg { color: #ffffff; }
+
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+.dash-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
+}
+.dash-panel-head { margin-bottom: var(--space-5); }
+.dash-panel-title { font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--text); }
+.dash-panel-subtitle { font-size: var(--fs-sm); color: var(--text-muted); margin-top: 2px; }
+
+.dash-table { width: 100%; border-collapse: collapse; }
+.dash-table th {
+  text-align: left;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.dash-table td {
+  padding: 18px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-sm);
+  vertical-align: middle;
+}
+.dash-table tbody tr:last-child td { border-bottom: none; }
+.dash-td-title { font-weight: var(--fw-semibold); color: var(--text); }
+.dash-td-muted { color: var(--text-muted); }
+
+.dash-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+}
+.dash-link:hover { color: var(--accent-hover); text-decoration: underline; }
+
+.dash-more {
+  background: none;
+  border: none;
+  color: var(--text-subtle);
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+.dash-more:hover { background-color: var(--bg); }
+
+/* status badge is its own click target (button reset, badge styling preserved) */
+.dash-badge-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+/* RFP title is clickable — looks like text, acts like a link */
+.dash-title-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  text-align: left;
+}
+.dash-title-btn:hover { color: var(--accent); text-decoration: underline; }
+
+.dash-title-btn-draft { display: inline-flex; align-items: center; gap: 6px; }
+.dash-title-btn-draft:hover { color: var(--danger, #dc2626); }
+
+.dash-draft-delete-hint {
+  display: inline-flex;
+  align-items: center;
+  opacity: 0;
+  color: var(--danger, #dc2626);
+  transition: opacity 0.15s;
+}
+.dash-title-btn-draft:hover .dash-draft-delete-hint { opacity: 1; }
+
+

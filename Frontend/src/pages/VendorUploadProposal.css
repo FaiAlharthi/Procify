@@ -1,0 +1,170 @@
+.vup-topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+.vup-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+.vup-crumb { background: none; border: none; padding: 0; color: var(--text-muted); font: inherit; }
+.vup-crumb:hover { color: var(--accent); }
+.vup-crumb-sep { color: var(--text-subtle); }
+.vup-title { font-size: var(--fs-2xl); font-weight: var(--fw-bold); color: var(--text); }
+
+.vup-target {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
+  margin-bottom: var(--space-5);
+}
+.vup-target-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+.vup-target-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.vup-target-status {
+  background-color: #ede9fe;
+  color: #6d28d9;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+.vup-target-title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  margin-bottom: var(--space-5);
+}
+.vup-target-meta { display: flex; gap: var(--space-8); flex-wrap: wrap; }
+.vup-meta-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.vup-meta-value { font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text); }
+
+.vup-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.vup-panel-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--border);
+}
+.vup-step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-pill);
+  background-color: var(--primary);
+  color: #ffffff;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.vup-panel-title {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.vup-panel-body { padding: var(--space-6); }
+.vup-field-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+.vup-field-label-spaced { margin-top: var(--space-6); }
+
+.vup-files {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+.vup-files .file-card { width: 100%; }
+
+@media (max-width: 700px) {
+  .vup-files { grid-template-columns: 1fr; }
+}
+
+/* ---------- Submit button (below dropzone) ---------- */
+.vup-submit-btn {
+  margin-top: var(--space-5);
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  background-color: var(--primary);
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 8px 18px -8px rgba(45, 27, 78, 0.5);
+}
+.vup-submit-btn:hover:not(:disabled) { background-color: var(--primary-hover); }
+.vup-submit-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ---------- "Letter with attached proposal" textarea ---------- */
+.vup-panel-body .textarea {
+  width: 100%;
+  min-height: 220px;                 /* taller, more room to type */
+  font-family: inherit;
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--text);
+  background-color: #F9FAFB;          /* soft tint */
+  border: 1px solid #e5e7eb;          /* subtle gray border */
+  border-radius: 12px;
+  padding: 16px 18px;                 /* modern inner padding */
+  resize: none;                       /* remove drag handle */
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+.vup-panel-body .textarea::placeholder { color: #9ca3af; }
+.vup-panel-body .textarea:focus {
+  background-color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(45, 27, 78, 0.12);
+}

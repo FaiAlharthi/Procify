@@ -1,0 +1,179 @@
+.sv-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+.sv-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 12px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.sv-back:hover { background-color: #f7f6fb; border-color: #ddd9ec; }
+.sv-topbar-actions { display: flex; gap: var(--space-3); }
+
+/* Unified buttons — match the CreateRFP standard */
+.sv-topbar-actions .btn,
+.sv-confirm {
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.sv-topbar-actions .btn-secondary,
+.sv-topbar-actions .btn-danger-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.sv-topbar-actions .btn-secondary:hover,
+.sv-topbar-actions .btn-danger-outline:hover {
+  background-color: #f7f6fb;
+  border-color: #ddd9ec;
+  color: var(--text);
+}
+
+.sv-kicker {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.sv-title {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  margin-bottom: var(--space-5);
+}
+
+.sv-search { position: relative; margin-bottom: var(--space-6); }
+.sv-search-input {
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--fs-base);
+  color: var(--text);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 48px 16px 18px;
+  outline: none;
+}
+.sv-search-input::placeholder { color: var(--text-subtle); }
+.sv-search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+.sv-search-icon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  display: inline-flex;
+}
+
+.sv-split {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+.sv-section-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+.sv-section-label-center { text-align: center; font-size: var(--fs-lg); letter-spacing: 0; text-transform: none; color: var(--text); font-weight: var(--fw-bold); }
+.sv-ai-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary);
+}
+
+.sv-suggested-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  min-height: 540px;
+}
+
+.sv-selected-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
+}
+.sv-selected-note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+.sv-selected-list { min-height: 180px; }
+.sv-selected-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border);
+}
+.sv-selected-name { font-size: var(--fs-base); font-weight: var(--fw-bold); color: var(--text); }
+.sv-selected-id { font-size: var(--fs-xs); color: var(--text-muted); margin-top: 2px; }
+.sv-remove {
+  background: none;
+  border: none;
+  color: var(--text-subtle);
+  display: inline-flex;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+}
+.sv-remove:hover { background-color: var(--bg); color: var(--text); }
+
+.sv-confirm { width: 100%; margin-top: var(--space-5); }
+.sv-confirm.btn-primary {
+  background-color: var(--primary);
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 8px 18px -8px rgba(45, 27, 78, 0.5);
+}
+.sv-confirm.btn-primary:hover { background-color: var(--primary-hover); }
+.sv-empty { font-size: var(--fs-sm); color: var(--text-subtle); padding: var(--space-5); text-align: center; }
+
+@media (max-width: 1024px) {
+  .sv-split { grid-template-columns: 1fr; }
+  .sv-suggested-card { min-height: auto; }
+}

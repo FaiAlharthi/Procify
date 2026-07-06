@@ -1,0 +1,41 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  padding: 14px 20px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.btn-primary { background-color: var(--primary); color: #ffffff; }
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-secondary {
+  background-color: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+.btn-secondary:hover { background-color: var(--bg); }
+
+.btn-ai {
+  background: linear-gradient(135deg, #4c2889, #6d28d9);
+  color: #ffffff;
+}
+.btn-ai:hover { background: linear-gradient(135deg, #43237a, #5b21b6); }
+
+.btn-danger-ghost {
+  background: transparent;
+  color: #dc2626;
+  border-color: transparent;
+}
+.btn-danger-ghost:hover { background-color: rgba(220, 38, 38, 0.08); }
+
+.btn-danger-outline {
+  background-color: var(--surface);
+  color: #dc2626;
+  border-color: #f3b4b4;
+}
+.btn-danger-outline:hover { background-color: rgba(220, 38, 38, 0.06); }

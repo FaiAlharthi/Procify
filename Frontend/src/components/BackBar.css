@@ -1,0 +1,13 @@
+.backbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  padding: 4px 0;
+  margin-bottom: var(--space-5);
+}
+.backbar:hover { color: var(--accent); }

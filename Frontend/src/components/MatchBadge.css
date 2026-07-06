@@ -1,0 +1,16 @@
+.match-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.3px;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.match-badge-spark { font-size: 10px; }
+.match-badge-green  { background-color: #dcfce7; color: #15803d; }
+.match-badge-yellow { background-color: #fef3c7; color: #b45309; }
+.match-badge-blue   { background-color: #dbeafe; color: #1d4ed8; }
+.match-badge-gray   { background-color: #eef0f4; color: #6b7280; }

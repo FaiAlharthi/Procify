@@ -1,0 +1,378 @@
+.crfp2-kicker {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.crfp2-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 12px;
+  margin-bottom: var(--space-5);
+  border-radius: 12px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.crfp2-back:hover { background-color: #f7f6fb; border-color: #ddd9ec; }
+
+/* ── Outer page shell — full viewport minus top nav ── */
+.crfp2 {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 76px);
+}
+
+/* ── Non-scrolling header (back button + kicker + title) ── */
+.crfp2-top {
+  flex-shrink: 0;
+}
+
+/* ── Two-column body — fills remaining height ─────────────
+   Left column scrolls through A4 pages independently.
+   Right column is fixed height; only messages scroll inside.
+──────────────────────────────────────────────────────────── */
+.crfp2-body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+/* Left column: its own vertical scroll for A4 pages */
+.crfp2-doc-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+  padding-bottom: 24px;
+}
+
+/* ── A4 white page ── */
+.crfp2-page {
+  background: #ffffff;
+  padding: 44px 48px;
+  aspect-ratio: 210 / 297;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16), 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* continuation label on page 2 */
+.crfp2-page-cont-label {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Left document internals ── */
+.crfp2-title {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--primary);
+  margin-bottom: var(--space-5);
+}
+.crfp2-doc-head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--border);
+}
+.crfp2-doc-label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.crfp2-doc-value {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.crfp2-section { margin-bottom: var(--space-6); }
+.crfp2-section:last-child { margin-bottom: 0; }
+.crfp2-section-title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--primary);
+  margin-bottom: var(--space-3);
+}
+.crfp2-ai-badge {
+  margin-left: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #6366f1;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 20px;
+  vertical-align: middle;
+}
+.crfp2-section-box {
+  background-color: #f7f8fa;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--text);
+}
+.crfp2-subhead {
+  font-weight: var(--fw-bold);
+  color: var(--primary);
+  margin-bottom: var(--space-2);
+}
+.crfp2-muted { color: var(--text-muted); margin-bottom: var(--space-3); }
+.crfp2-list { padding-left: 20px; display: flex; flex-direction: column; gap: var(--space-3); }
+.crfp2-list li { line-height: 1.6; }
+
+/* ── Right AI panel — fixed to column height, internal scroll for messages ── */
+.crfp2-ai {
+  background: linear-gradient(160deg, #2a2152 0%, #1c1640 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;   /* clips content; only .crfp2-chat scrolls internally */
+}
+.crfp2-ai-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+}
+.crfp2-ai-subtitle {
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: #c9c6dd;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+.crfp2-ai-check {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #d7d4e8;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  padding: 14px;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-5);
+  flex-shrink: 0;
+}
+.crfp2-ai-check:hover { background-color: rgba(255, 255, 255, 0.1); }
+
+/* Messages area: grows to fill remaining AI panel height, scrolls */
+.crfp2-chat {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+.crfp2-msg { display: flex; gap: var(--space-2); }
+.crfp2-msg-bot { justify-content: flex-start; }
+.crfp2-msg-user { justify-content: flex-end; }
+.crfp2-msg-avatar {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-pill);
+  background-color: #6d28d9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+.crfp2-bubble {
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  max-width: 88%;
+}
+.crfp2-bubble-bot { background-color: rgba(255, 255, 255, 0.06); color: #e7e5f2; }
+.crfp2-bubble-bot p + p { margin-top: var(--space-3); }
+.crfp2-bubble-user { background-color: #6366f1; color: #ffffff; }
+.crfp2-missing {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+.crfp2-missing li { display: flex; align-items: center; gap: var(--space-2); }
+
+/* Composer always pinned to bottom of AI panel */
+.crfp2-composer {
+  flex-shrink: 0;
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+.crfp2-input-row { display: flex; align-items: center; gap: var(--space-2); }
+.crfp2-input {
+  flex: 1;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  color: var(--text);
+  background-color: #f1f2f5;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  outline: none;
+}
+.crfp2-input::placeholder { color: var(--text-subtle); }
+.crfp2-send {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.crfp2-send:hover { background-color: var(--primary-hover); }
+.crfp2-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+.crfp2-chip {
+  background-color: #f1f2f5;
+  border: none;
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+}
+.crfp2-chip:hover { background-color: var(--border); }
+
+.crfp2-footnote { font-size: var(--fs-sm); color: var(--text-muted); }
+
+/* ── Pinned bottom footer ── */
+.crfp2-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin: 0 -40px -48px;
+  padding: 16px 40px;
+  background-color: var(--surface);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -6px 18px -12px rgba(16, 24, 40, 0.18);
+}
+.crfp2-footer-actions { display: flex; align-items: center; gap: var(--space-3); }
+
+.crfp2-footer-actions .btn {
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.crfp2-footer-actions .btn-secondary,
+.crfp2-footer-actions .btn-danger-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.crfp2-footer-actions .btn-secondary:hover,
+.crfp2-footer-actions .btn-danger-outline:hover {
+  background: #f7f6fb; border-color: #ddd9ec; color: var(--text);
+}
+.crfp2-footer-actions .btn-ai,
+.crfp2-footer-actions .btn-primary {
+  background-color: var(--primary);
+  background-image: none;
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 8px 18px -8px rgba(45, 27, 78, 0.5);
+}
+.crfp2-footer-actions .btn-ai:hover,
+.crfp2-footer-actions .btn-primary:hover { background-color: var(--primary-hover); }
+
+@media (max-width: 1024px) {
+  .crfp2 { height: auto; }
+  .crfp2-body {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+  .crfp2-doc-col { overflow-y: visible; }
+  .crfp2-ai { overflow: visible; height: auto; min-height: 500px; }
+  .crfp2-chat { min-height: 300px; overflow-y: auto; }
+  .crfp2-footer {
+    margin: var(--space-6) 0 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+  .crfp2-footer-actions { flex-direction: column; }
+}
+
+/* ── AI update confirm buttons ── */
+.crfp2-confirm-btns {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.crfp2-confirm-yes {
+  background-color: #6d28d9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.crfp2-confirm-yes:hover { background-color: #5b21b6; }
+.crfp2-confirm-no {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #c9c6dd;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.crfp2-confirm-no:hover { background-color: rgba(255, 255, 255, 0.14); }

@@ -1,0 +1,58 @@
+.action-bar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  background-color: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 16px 40px;
+  margin: 24px -40px -48px;
+}
+.action-bar-left,
+.action-bar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* ---- Secondary actions (Cancel RFP, Save as draft): clean, soft-bordered ---- */
+.action-bar-left .btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.action-bar-left .btn:hover {
+  background-color: #f7f6fb;
+  border-color: #ddd9ec;
+  color: var(--text);
+}
+
+/* ---- Primary actions (Enhance with AI, Send to vendors): solid fills ---- */
+.action-bar-right .btn {
+  border-radius: 10px;
+  padding: 11px 18px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: filter 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+/* Send to vendors — brand purple solid */
+.action-bar-right .btn-primary {
+  background-color: var(--primary);
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 8px 18px -8px rgba(45, 27, 78, 0.5);
+}
+.action-bar-right .btn-primary:hover { background-color: var(--primary-hover); }
+/* Enhance with AI — keep the indigo gradient, add depth */
+.action-bar-right .btn-ai {
+  box-shadow: 0 8px 18px -8px rgba(108, 40, 217, 0.45);
+}
+.action-bar-right .btn-ai:hover { filter: brightness(1.06); }
+

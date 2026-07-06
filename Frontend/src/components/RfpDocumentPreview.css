@@ -1,0 +1,95 @@
+/* ── pages wrapper — transparent, just provides spacing ──── */
+.rfp-preview-bg {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── one A4 page ─────────────────────────────────────────────
+   Using min-height instead of a fixed height so the page always
+   grows to contain its content — text never overflows the frame.
+────────────────────────────────────────────────────────────── */
+.rfp-page {
+  background: #ffffff;
+  padding: 44px 48px;
+  aspect-ratio: 210 / 297;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16), 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+/* continuation label for page 2+ */
+.rfp-page-cont {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── document internals ──────────────────────────────────────── */
+.rfp-doc-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.rfp-doc-kicker {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.rfp-doc-meta {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.rfp-doc-date {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.rfp-doc-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--space-5) 0;
+}
+.rfp-doc-title {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--primary);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.rfp-doc-prepared {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+}
+.rfp-doc-sections { margin-top: var(--space-6); }
+.rfp-doc-sections-top { margin-top: 0; }
+.rfp-doc-section { margin-bottom: var(--space-5); }
+.rfp-doc-section:last-child { margin-bottom: 0; }
+.rfp-doc-section-label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+.rfp-doc-section-text {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.rfp-doc-section-text.is-empty {
+  font-style: italic;
+  color: var(--text-subtle);
+}

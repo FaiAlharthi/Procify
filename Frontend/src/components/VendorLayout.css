@@ -1,0 +1,9 @@
+/* Vendor layout reuses the same shell as the employee layout. */
+.layout { display: flex; min-height: 100vh; }
+.layout-main {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 28px 40px 48px;
+  background-color: var(--bg);
+}

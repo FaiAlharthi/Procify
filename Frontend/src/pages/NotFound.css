@@ -1,0 +1,61 @@
+.notfound {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg, #f4f5f7);
+  padding: 24px;
+}
+
+.notfound-card {
+  text-align: center;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e7e8ee);
+  border-radius: 16px;
+  padding: 48px 40px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 20px 60px -20px rgba(45, 27, 78, 0.25);
+}
+
+.notfound-code {
+  margin: 0;
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--primary);
+}
+
+.notfound-title {
+  margin: 8px 0 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.notfound-text {
+  margin: 8px 0 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.notfound-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.notfound-btn:hover {
+  background: var(--primary-hover);
+}
