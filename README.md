@@ -4,7 +4,7 @@
 
 # Procify
 
-A procurement platform where employees write RFPs (Requests for Proposals), vendors upload PDF proposals, and AI scores each proposal against the RFP. Built as a team project at Tuwaiq Academy.
+A procurement platform where employees write RFPs (Requests for Proposals), vendors upload PDF proposals, and AI scores each proposal against the RFP. Built as a team project at Saudi Digital Academy.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
