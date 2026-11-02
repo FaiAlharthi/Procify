@@ -132,7 +132,7 @@ Frontend/              React + Vite app
 
 ## Team
 
-Built together at Tuwaiq Academy. We all worked across the full stack, so the work was shared rather than split by role.
+Built together at Saudi Digital Academy. We all worked across the full stack, so the work was shared rather than split by role.
 
 <table>
   <tr>
