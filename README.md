@@ -1,103 +1,144 @@
+<p align="center">
+  <img src="Frontend/public/logo.png" alt="Procify" width="140">
+</p>
+
 # Procify
 
-A procurement management system that helps organizations create and manage RFPs (Requests for Proposals), collect vendor proposals, and evaluate them using AI scoring.
+A procurement platform where employees write RFPs (Requests for Proposals), vendors upload PDF proposals, and AI scores each proposal against the RFP. Built as a team project at Tuwaiq Academy.
 
----
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-Vite-61DAFB?logo=react&logoColor=black)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)
+![Gemini](https://img.shields.io/badge/Google%20Gemini-AI-8E75B2?logo=googlegemini&logoColor=white)
 
-## Project Summary
+## What it does
 
-Procify streamlines the procurement workflow between employees and vendors. Employees can create RFPs, invite vendors, and receive AI-powered proposal evaluations. Vendors can view open RFPs, submit proposals, and track their status. An AI chat assistant powered by Gemini helps users navigate procurement questions using a built-in document knowledge base.
+- **Employees** create RFPs in five sections (objective, scope, technical criteria, commercials, delivery), export them as PDF, pick vendors, and compare proposals side by side.
+- **Vendors** see the RFPs they were invited to and upload a PDF proposal.
+- **AI proposal scoring:** a local LLM (Ollama, `qwen2.5:7b`) reads the RFP and the proposal and returns a score out of 100 with a short explanation for each section.
+- **AI vendor suggestions:** Gemini compares the RFP with vendor descriptions and returns the best matches with reasons.
+- **RFP writing assistant:** a chat that suggests improvements and can fill RFP fields. It searches a small procurement knowledge base (BM25 search I wrote from scratch over the files in `Backend/documents`).
 
----
+## Tech stack
 
-## Technologies
+Python, FastAPI, SQLAlchemy, Alembic, JWT (bcrypt passwords), SQLite, React 19 + Vite, Google Gemini, Ollama.
 
-This project is being developed with the following technologies:
+## Run it locally
 
-- Backend: Python, FastAPI, SQLAlchemy, Pydantic, Uvicorn
-- Frontend: React, Vite, JavaScript/JSX
-- AI features: Gemini API and Ollama with the `qwen2.5:7b` model
-- Database: SQLite for local development
-- Version control: Git and GitHub
+You need Python 3.10+, Node.js, and [Ollama](https://ollama.com/).
 
----
-
-## Requirements
-
-### Backend
-- Python 3.10+
-- [Ollama](https://ollama.com/) running locally with the `qwen2.5:7b` model (for proposal AI scoring)
-- A Gemini API key (for the AI chat assistant)
-
-### Frontend
-- Node.js
-- npm
-
----
-
-## Installation
-
-### 1. Clone the repository
 ```bash
-git clone <repo-url>
+git clone https://github.com/FaiAlharthi/Procify.git
 cd Procify
 ```
 
-### 2. Backend setup
+**Backend**
+
 ```bash
-cd Backend/app
-pip install -r requirements.txt
+cd Backend
+pip install -r app/requirements.txt
+cp .env.example .env        # then add your GEMINI_API_KEY
+ollama pull qwen2.5:7b      # used for proposal scoring and the chat assistant
+uvicorn app.main:app --reload
 ```
 
-### 3. Frontend setup
+The API runs at http://localhost:8000 (interactive docs at `/docs`). On first start the database is created and filled with demo employees, vendors, RFPs, and proposals.
+
+**Frontend**
+
 ```bash
 cd Frontend
 npm install
-```
-
----
-
-## Run the Project
-
-### Start the Backend
-```bash
-cd Backend/app
-uvicorn main:app --reload
-```
-The API will be available at `http://localhost:8000`.
-
-### Start the Frontend
-```bash
-cd Frontend
 npm run dev
 ```
-The app will be available at `http://localhost:5173`.
 
----
+Open http://localhost:5173.
 
-## API Keys & Environment Variables
+**Demo logins** (password `1234` for all): employees `E0001`–`E0007`, vendors `V0001`–`V0011`. Choose the matching role on the login screen.
 
-Create a `.env` file inside `Backend/` with the following:
+## API reference
 
-```env
-GEMINI_API_KEY=your_gemini_api_key_here
-GEMINI_MODEL=gemini-2.5-flash
+Interactive docs are also available at `/docs` when the backend is running. Endpoints marked 🔒 need a `Authorization: Bearer <token>` header from `/auth/login`.
+
+### Auth
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/auth/login` | Log in as `employee` or `vendor`. Returns a JWT (valid 8 hours). |
+
+```json
+// request
+{ "user_id": "E0001", "password": "1234", "role": "employee" }
+// response
+{ "access_token": "...", "token_type": "bearer", "role": "employee", "user_id": "E0001", "name": "Bahy", "company_name": "Saudi Digital Academy", "company_id": "C0001" }
 ```
 
-**Ollama** must also be running locally on port `11434` with the `qwen2.5:7b` model pulled:
-```bash
-ollama pull qwen2.5:7b
-ollama serve
+### RFPs
+
+| Method | Endpoint | Who | Description |
+|---|---|---|---|
+| POST | `/rfps/` | 🔒 employee | Create an RFP (starts as `draft`). |
+| GET | `/rfps/?vendor_id=V0001` | public | List RFPs, optionally only those a vendor was invited to. |
+| PATCH | `/rfps/{rfp_id}` | 🔒 employee | Update RFP fields. |
+| POST | `/rfps/{rfp_id}/send-to-vendors` | 🔒 employee | Invite vendors: `{ "vendor_ids": ["V0001", "V0002"] }`. |
+| GET | `/rfps/{rfp_id}/pdf` | public | Download the RFP as a PDF. |
+| PATCH | `/rfps/{rfp_id}/close` | 🔒 employee | Close the RFP, optionally with `winner_vendor_id`. |
+| DELETE | `/rfps/{rfp_id}` | 🔒 employee | Delete an RFP (drafts only). |
+| GET | `/rfps/{rfp_id}/suggested-vendors` | public | Top 5 vendors by AI match score, with reasons. |
+
+### Proposals
+
+| Method | Endpoint | Who | Description |
+|---|---|---|---|
+| POST | `/proposals/analyze/{rfp_id}` | 🔒 vendor | Upload a PDF (`multipart/form-data`, field `file`). The text is extracted, scored by AI, and saved. Uploading again replaces the earlier proposal. |
+| GET | `/proposals/?rfp_id=R0001` | public | List proposals, optionally for one RFP. |
+| GET | `/proposals/{proposal_id}/file` | public | Open the uploaded PDF. |
+
+### Vendors, employees, chat
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/vendors/` | List vendors. |
+| GET | `/vendors/{vendor_id}` | Get one vendor. |
+| GET | `/employees/{employee_id}` | Get one employee. |
+| POST | `/chat/` | RFP writing assistant. Body: `{ "message": "...", "rfp_context": { "title": "...", "objective": "..." } }`. Returns `{ "response": "...", "updates": { "objective": "..." } }`. |
+
+Errors use standard HTTP codes: `401` bad or missing token, `403` wrong role, `404` not found, `422` unreadable PDF, `502` AI service failed.
+
+## Project structure
+
+```
+Backend/
+  app/
+    main.py            app setup, CORS, demo data
+    auth.py            JWT and password hashing
+    models.py          database tables
+    routers/           auth, rfps, proposals, vendors, employees, chat, vendor_suggestions
+    ai_service.py      proposal scoring (Ollama)
+    rag_service.py     BM25 search over documents/
+  documents/           procurement knowledge base (markdown)
+  alembic/             migrations
+Frontend/              React + Vite app
 ```
 
----
+## What I would improve next
 
-## Limitations & Known Issues
+- Move the JWT secret to an environment variable and protect the read endpoints that are currently public.
+- Sanitize uploaded file names and store each upload under a unique name.
+- Show the vendor's score only to employees.
+- Add automated tests for the auth and scoring flow.
+- Deploy with Docker and PostgreSQL.
 
-- The SQLite database (`procify.db`) is seeded automatically on first run with sample employees, vendors, RFPs, and proposals.
-- Ollama must be running locally for AI proposal scoring to work; the chat assistant uses Gemini separately.
-- The app is configured for local development only — CORS is restricted to `localhost:5173` and `localhost:3000`.
-- Default password for all seeded users (employees and vendors) is `1234`.
+## Team
 
+Built together at Tuwaiq Academy. We all worked across the full stack, so the work was shared rather than split by role.
 
-** This project represents the core concept and initial implementation. It is designed as a foundation that can be further enhanced with better AI models, more advanced technologies, additional features, and future improvements.
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/FaiAlharthi"><b>Fai</b></a><br>FaiAlharthi</td>
+    <td align="center"><a href="https://github.com/shouqaalaboudi"><b>Shouq</b></a><br>shouqaalaboudi</td>
+    <td align="center"><a href="https://github.com/Ranasaubid"><b>Rana</b></a><br>Ranasaubid</td>
+    <td align="center"><a href="https://github.com/AbrarAlanzi"><b>Abrar</b></a><br>AbrarAlanzi</td>
+  </tr>
+</table>
